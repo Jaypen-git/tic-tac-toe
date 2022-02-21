@@ -1,15 +1,17 @@
 #gameboard {
     border: 1px solid black;
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr); */
     margin: 0 auto;
-    height: 500px;
+    height: 600px;
     width: 600px;
 }
 .space {
-    font-size: 130px;
+    font-size: 170px;
+    height: 200px;
     text-align: center;
+    width: 200px;
 }
 .space:hover {
     background-color: rgb(230, 230, 230);
