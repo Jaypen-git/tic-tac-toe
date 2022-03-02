@@ -1,8 +1,5 @@
 #gameboard {
     border: 1px solid black;
-    /* display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr); */
     margin: 0 auto;
     height: 600px;
     width: 600px;
