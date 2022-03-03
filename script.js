@@ -5,8 +5,8 @@
         let selectSpace = (e) => {
             e.target.innerText = currentPlayer.mark;
             e.target.style.pointerEvents = 'none';
+            gameController.winCheck(e);
             gameController.switchPlayer();
-            console.log(currentPlayer);
         }
         return {order, name, mark, selectSpace};
     }
@@ -26,6 +26,7 @@
             for (let i = 0; i < 9; i++){
                 this.spaces[i] = document.getElementById(i);
             }
+            this.board = document.querySelector('#gameboard');
         },
         bindEvents: function(){ // all event bindings happen here
             for (let i = 0; i < this.spaces.length; i++){ // add events to all the spaces
@@ -33,9 +34,20 @@
             }
         }
     }
-    // Can't initialize gameboard here because gameController needs to be initialized first
+    // CHANGE 03/02: Because the select space method belongs to the player object, we can initialize the gameboard here
+    gameboard.init();
     const gameController = {
-        // win conditions can't be stored here yet, the gameboard needs to initialize
+        // CHANGE 03/02: Because the gameboard is already initialized, we can store winning moves here
+        winningMoves: [
+            [gameboard.spaces[0], gameboard.spaces[1], gameboard.spaces[2]],
+            [gameboard.spaces[3], gameboard.spaces[4], gameboard.spaces[5]],
+            [gameboard.spaces[6], gameboard.spaces[7], gameboard.spaces[8]],
+            [gameboard.spaces[0], gameboard.spaces[3], gameboard.spaces[6]],
+            [gameboard.spaces[1], gameboard.spaces[4], gameboard.spaces[7]],
+            [gameboard.spaces[2], gameboard.spaces[5], gameboard.spaces[8]],
+            [gameboard.spaces[0], gameboard.spaces[4], gameboard.spaces[8]],
+            [gameboard.spaces[2], gameboard.spaces[4], gameboard.spaces[6]]
+        ],
         switchPlayer: function(){
             if (currentPlayer === playerOne){
                 currentPlayer = playerTwo;
@@ -43,30 +55,29 @@
                 currentPlayer = playerOne;
             }
         },
-        winCheck: function(){
+        winCheck: function(e){
             // for each item in the winning moves array
+            for (let i = 0; i < this.winningMoves.length; i++){
+                let move = this.winningMoves[i];
+                // check for the moves that include a space that was just picked
+                if (move.includes(e.target)){
+                    // need to check all moves that contain picked space
 
-            // check if each item in sub-array have the same text content
+                    // check if each item in sub-array have the same text content
+                    if (move[0].innerText === move[1].innerText && move[1].innerText === move[2].innerText){
+                        console.log('3 in a row!!!');
+                        gameboard.board.style.pointerEvents = 'none';
+                    } else {
+                        return;
+                    }
+                }
+            }
 
             // if one of the winning moves all have "X", player 1 wins
 
             // if one of the winning moves all have "O", player 2 wins
 
-            // otherwise, record as a tie
+            // if there is no winning move and all the spaces are filled, record it as a tie
         }
     }
-    gameboard.init();
-    // store the win conditions in an array and add it to gameController object
-    gameController.winningMoves = [
-        [gameboard.spaces[0], gameboard.spaces[1], gameboard.spaces[2]],
-        [gameboard.spaces[3], gameboard.spaces[4], gameboard.spaces[5]],
-        [gameboard.spaces[6], gameboard.spaces[7], gameboard.spaces[8]],
-        [gameboard.spaces[0], gameboard.spaces[3], gameboard.spaces[6]],
-        [gameboard.spaces[1], gameboard.spaces[4], gameboard.spaces[7]],
-        [gameboard.spaces[2], gameboard.spaces[5], gameboard.spaces[8]],
-        [gameboard.spaces[0], gameboard.spaces[4], gameboard.spaces[8]],
-        [gameboard.spaces[2], gameboard.spaces[4], gameboard.spaces[6]]
-    ];
-    // Can I access the gameboard spaces because the gameboard was already initialized?
-    console.log(gameController.winningMoves);
 })();
