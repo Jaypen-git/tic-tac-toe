@@ -48,6 +48,7 @@
             [gameboard.spaces[0], gameboard.spaces[4], gameboard.spaces[8]],
             [gameboard.spaces[2], gameboard.spaces[4], gameboard.spaces[6]]
         ],
+        storedMoves: new Set(), // A set is a data structure that stores values with no duplicates
         switchPlayer: function(){
             if (currentPlayer === playerOne){
                 currentPlayer = playerTwo;
@@ -55,23 +56,36 @@
                 currentPlayer = playerOne;
             }
         },
-        winCheck: function(e){
+        storeMoves: function(e){ // this stores winning moves that include a space that was picked
             // for each item in the winning moves array
             for (let i = 0; i < this.winningMoves.length; i++){
-                let move = this.winningMoves[i];
+                let moves = this.winningMoves[i];
                 // check for the moves that include a space that was just picked
-                if (move.includes(e.target)){
-                    // need to check all moves that contain picked space
-
-                    // check if each item in sub-array have the same text content
-                    if (move[0].innerText === move[1].innerText && move[1].innerText === move[2].innerText){
-                        console.log('3 in a row!!!');
-                        gameboard.board.style.pointerEvents = 'none';
-                    } else {
-                        return;
+                if (moves.includes(e.target)){
+                    // if a checked winning moves includes the clicked space, add it to the storedMoves set
+                    this.storedMoves.add(moves)
+                }
+            } 
+        },
+        winCheck: function(e){
+            this.storeMoves(e);
+            // make an array from the stored moves set
+            let matches = Array.from(this.storedMoves);
+            // loop through all the moves in the matches array
+            let list = [];
+            for (let i = 0; i < matches.length; i++){
+                let match = matches[i];
+                list.push(match);
+            }
+            for (let i = 0; i < list.length; i++){
+                let moves = list[i];
+                if (moves.includes(e.target)){
+                    if (moves[0].innerText === moves[1].innerText && moves[0].innerText === moves[2].innerText){
+                        console.log('3 in a row');
                     }
                 }
             }
+            // check if each item in sub-array have the same text content
 
             // if one of the winning moves all have "X", player 1 wins
 
