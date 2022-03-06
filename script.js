@@ -3,7 +3,8 @@
     // player factory function
     const playerFactory = (name, mark) => {
         let selectSpace = (e) => {
-            e.target.innerText = currentPlayer.mark;
+            e.target.firstChild.src = currentPlayer.mark;
+            e.target.firstChild.style.display = 'block';
             e.target.style.pointerEvents = 'none';
             gameboard.markedSpaces.push(e.target);
             gameController.winCheck(e);
@@ -11,9 +12,9 @@
         }
         return {name, mark, selectSpace};
     }
-    // create two players
-    let playerOne = playerFactory('Player One', 'X');
-    let playerTwo = playerFactory('Player Two', 'O');
+    // // create two players
+    let playerOne = playerFactory('', '');
+    let playerTwo = playerFactory('', '');
     // keep track of whose turn it is
     let currentPlayer = playerOne;
     // general function to add items to array
@@ -22,6 +23,11 @@
             let item = array[i];
             target.push(item);
         }
+    }
+    // general function to switch displays
+    const swapdisplay = (item1, item2) => {
+        item1.style.display = 'none';
+        item2.style.display = 'block';
     }
     // gameboard module
     const gameboard = {
@@ -36,10 +42,31 @@
             }
             this.board = document.querySelector('#gameboard');
             this.markedSpaces = [];
+            this.submit = document.querySelector('#submit');
+            this.player1name = document.querySelector('#player1name');
+            this.player2name = document.querySelector('#player2name');
+            this.start = document.querySelector('.start');
+            this.playericons = document.querySelectorAll('.playericon');
         },
         bindEvents: function(){ // all event bindings happen here
             for (let i = 0; i < this.spaces.length; i++){ // add events to all the spaces
                 this.spaces[i].addEventListener('click', currentPlayer.selectSpace);
+            }
+            this.submit.addEventListener('click', () => {
+                swapdisplay(this.start, this.board);
+                playerOne.name = this.player1name.value;
+                playerTwo.name = this.player2name.value;
+            })
+            for (let i = 0; i < this.playericons.length; i++){
+                this.playericons[i].addEventListener('click', (e) => {
+                    if (e.target.classList.contains('player1')){
+                        playerOne.mark = e.target.src;
+                    } else if (e.target.classList.contains('player2')){
+                        playerTwo.mark = e.target.src;
+                    }
+                    e.target.classList.add('selected');
+                    e.target.parentNode.style.pointerEvents = 'none';
+                });
             }
         }
     }
@@ -100,8 +127,8 @@
                             console.log('Player 2 wins!');
                             gameboard.board.style.pointerEvents = 'none';
                             break;
-                        case gameboard.markedSpaces.length === 9:
-                            console.log('It was a tie!'); // QUESTION: why is this firing 3 times?
+                        case gameboard.markedSpaces.length === 9 && moves[0] !== moves[1]:
+                            console.log('It was a tie!'); // QUESTION: why is this firing twice?
                             break;
                         default:
                             break;
