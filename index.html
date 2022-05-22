@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="start">
+        <div class="menuContainer">
+            <section class="playerMenu">
+                <h1 class="player1">Player 1</h1>
+                <label for="player1name">Player 1, Enter your name!</label>
+                <input type="text" name="player1name" class ="playername" id="player1name">
+                <p class="iconHeading">Pick your icon!</p>
+                <div class="iconContainer">
+                    <img src="images/ky.jpg" alt="Ky Kiske" class="playericon player1">
+                    <img src="images/sol.jpg" alt="Sol Badguy" class="playericon player1">
+                    <img src="images/i-no.jpg" alt="I-No" class="playericon player1">
+                    <img src="images/nagoriyuki.jpg" alt="Nagoriyuki" class="playericon player1">
+                </div>
+            </section>
+            <section class="playerMenu">
+                <h1 class="player2">Player 2</h1>
+                <label for="player2name">Player 2, Enter your name!</label>
+                <input type="text" name="player2name" class ="playername" id="player2name">
+                <p class="iconHeading">Pick your icon!</p>
+                <div class="iconContainer">
+                    <img src="images/ky.jpg" alt="Ky Kiske" class="playericon player2">
+                    <img src="images/sol.jpg" alt="Sol Badguy" class="playericon player2">
+                    <img src="images/i-no.jpg" alt="I-No" class="playericon player2">
+                    <img src="images/nagoriyuki.jpg" alt="Nagoriyuki" class="playericon player2">
+                </div>
+            </section>
+        </div>
+        <button id="submit">Let's Rock!</button>
+    </div>
+    <table id="gameboard">
+        <tbody>
+            <tr>
+                <td class="space" id="0"><img src="" class="boardmark"></td>
+                <td class="space" id="1"><img src="" class="boardmark"></td>
+                <td class="space" id="2"><img src="" class="boardmark"></td>
+            </tr>
+            <tr>
+                <td class="space" id="3"><img src="" class="boardmark"></td>
+                <td class="space" id="4"><img src="" class="boardmark"></td>
+                <td class="space" id="5"><img src="" class="boardmark"></td>
+            </tr>
+            <tr>
+                <td class="space" id="6"><img src="" class="boardmark"></td>
+                <td class="space" id="7"><img src="" class="boardmark"></td>
+                <td class="space" id="8"><img src="" class="boardmark"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="result_screen">
+        <span>Play again?</span>
+        <button class="selection" id="yes">Yes</button>
+        <button class="selection" id="no">No</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

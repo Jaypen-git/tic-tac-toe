@@ -1,0 +1,132 @@
+:root {
+    --main-font-color: rgb(230, 230, 230);
+    --player1: rgb(255, 47, 32);
+    --player2: rgb(10, 116, 255);
+    --secondary-color: rgb(212, 0, 0);
+}
+@font-face {
+    font-family: GG;
+    src: url('fonts/Impact - Strive.otf');
+}
+* {
+    font-family: GG;
+    font-size: 28px;
+    margin: 0;
+}
+body {
+    background-color: #444;
+}
+img {
+    border: 4px solid var(--main-font-color);
+    border-radius: 50%;
+}
+.player1 {
+    background-color: var(--player1);
+}
+.player2 {
+    background-color: var(--player2);
+}
+.menuContainer {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+.playerMenu {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 3px solid var(--main-font-color);
+    border-radius: 5px;
+    height: 70vh;
+    width: 22vw;
+}
+.playerMenu * {
+    color: var(--main-font-color);
+    display: block;
+}
+.playerMenu h1 {
+    font-size: 40px;
+    padding: 5px 0;
+    text-align: center;
+}
+.playerMenu label {
+    margin: 20px auto;
+    text-align: center;
+    width: 70%;
+}
+.playername {
+    background-color: rgba(0, 0, 0, 0);
+    border: 3px solid var(--main-font-color);
+    border-radius: 6px;
+    margin: 0 auto;
+    padding: 10px;
+    width: 60%;
+}
+.playername:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+.iconHeading {
+    margin: 20px auto;
+    text-align: center;
+}
+.iconContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    width: 90%;
+}
+.playericon {
+    display: inline-block;
+    height: 80px;
+    margin: 10px;
+}
+.playericon:hover {
+    border-color: var(--secondary-color);
+    cursor: pointer;
+    height: 90px;
+}
+.selected {
+    height: 90px;
+    border-color: var(--secondary-color);
+}
+#submit {
+    background-color: rgb(41, 41, 41);
+    border: 3px solid var(--main-font-color);
+    border-radius: 5px;
+    color: var(--main-font-color);
+    display: block;
+    font-size: 38px;
+    margin: 30px auto;
+    padding: 8px;
+}
+#submit:hover {
+    background-color: var(--main-font-color);
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+#gameboard {
+    background-color: var(--secondary-color);
+    border: 1px solid black;
+    display: none;
+    margin: 0 auto;
+    height: auto;
+    width: 600px;
+}
+.space {
+    font-size: 170px;
+    height: 200px;
+    text-align: center;
+    width: 200px;
+}
+.space:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.boardmark {
+    display: none;
+    height: 150px;
+    margin: 0 auto;
+}
+.result_screen {
+    display: none;
+}
