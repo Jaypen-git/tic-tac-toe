@@ -119,16 +119,16 @@
                     switch(true){
                         // if one of the winning moves all have player 1's icon, player 1 wins
                         case moves[0].firstChild.src === moves[1].firstChild.src && moves[0].firstChild.src === moves[2].firstChild.src && moves[0].firstChild.src === playerOne.mark:
-                            console.log('Player 1 wins!');
+                            setTimeout(() => {alert('Player 1 wins!')}, 1000);
                             gameboard.board.style.pointerEvents = 'none';
                             break;
                         // if one of the winning moves all have player 2's icon, player 2 wins
                         case moves[0].firstChild.src === moves[1].firstChild.src && moves[0].firstChild.src === moves[2].firstChild.src && moves[0].firstChild.src === playerTwo.mark:
-                            console.log('Player 2 wins!');
+                            setTimeout(() => {alert('Player 2 wins!')}, 1000);
                             gameboard.board.style.pointerEvents = 'none';
                             break;
                         case gameboard.markedSpaces.length === 9 && moves[0] !== moves[1]:
-                            console.log('It was a tie!'); // QUESTION: why is this firing twice?
+                            alert('It was a tie!'); // QUESTION: why is this firing twice?
                             break;
                         default:
                             break;
