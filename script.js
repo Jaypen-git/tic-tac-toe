@@ -117,13 +117,13 @@
                 if (moves.includes(e.target)){
                     // check if any of the statements are true
                     switch(true){
-                        // if one of the winning moves all have "X", player 1 wins
-                        case moves[0].innerText === moves[1].innerText && moves[0].innerText === moves[2].innerText && moves[0].innerText === 'X':
+                        // if one of the winning moves all have player 1's icon, player 1 wins
+                        case moves[0].firstChild.src === moves[1].firstChild.src && moves[0].firstChild.src === moves[2].firstChild.src && moves[0].firstChild.src === playerOne.mark:
                             console.log('Player 1 wins!');
                             gameboard.board.style.pointerEvents = 'none';
                             break;
-                        // if one of the winning moves all have "O", player 2 wins
-                        case moves[0].innerText === moves[1].innerText && moves[0].innerText === moves[2].innerText && moves[0].innerText === 'O':
+                        // if one of the winning moves all have player 2's icon, player 2 wins
+                        case moves[0].firstChild.src === moves[1].firstChild.src && moves[0].firstChild.src === moves[2].firstChild.src && moves[0].firstChild.src === playerTwo.mark:
                             console.log('Player 2 wins!');
                             gameboard.board.style.pointerEvents = 'none';
                             break;
@@ -134,7 +134,7 @@
                             break;
                     }
                 }            
-            }            
+            }         
             // if there is no winning move and all the spaces are filled, record it as a tie
         }
     }
